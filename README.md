@@ -3,35 +3,31 @@ A Cordova plugin to download file in system's default download manager
 
 ## Supported Platforms
 
- - Android (SDK >= 11)
+- Android (SDK >= 11)
 
- ## Installation
+## Installation
 
- ```
- cordova plugin add https://github.com/vasani-arpit/cordova-plugin-downloadmanager
- ```
+```
+cordova plugin add https://github.com/Mhitra/cordova-plugin-downloadmanager
+```
 
- ## How to Use 
+## How to Use 
 
- ```
- //once device is ready
-var fail = function (message) {    
-    alert(message)
-}
-var success = function (data) {
-        console.log("succes");
-}
-cordova.plugins.DownloadManager.download("Your URL to download", success, fail);
- ```
+```
+//once device is ready
+window.cordova.plugins.DownloadManager.download(url, description, function (success) {
+    console.log('DownloadManager::download::success', success);
+}, function (error) {    
+    console.error('DownloadManager::download::error', error);
+});
+```
 
-## Result
+## Author
 
-![screenshot](./screenshot/downloadplugin.gif)
+Original cordova plugin made by "https://github.com/vasani-arpit".
 
-## Contributing
+My cordova plugin is just a fork from the original cordova plugin:
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+"https://github.com/vasani-arpit/cordova-plugin-downloadmanager"
+
+Thanks "vasani-arpit" for the idea!
