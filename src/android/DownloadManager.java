@@ -6,6 +6,7 @@ import android.os.Environment;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.LOG;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,12 +19,16 @@ import java.net.URLDecoder;
  * This class echoes a string called from JavaScript.
  */
 public class DownloadManager extends CordovaPlugin {
-
+    
+    protected static final String LOG_TAG = "Plugin_DownloadManager";
+    
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("download")) {
             String url = args.getString(0);
+            //LOG.d(LOG_TAG, "url: " + url);
             String description = args.getString(1);
+            //LOG.d(LOG_TAG, "description: " + description);
             this.startDownload(url, description, callbackContext);
             return true;
         }
@@ -46,8 +51,10 @@ public class DownloadManager extends CordovaPlugin {
             //Set whether this download may proceed over a roaming connection.
             request.setAllowedOverRoaming(false);
             //Set the title of this download, to be displayed in notifications (if enabled).
+            //LOG.d(LOG_TAG, "setTitle: " + filename);
             request.setTitle(filename);
             //Set a description of this download, to be displayed in notifications (if enabled)
+            //LOG.d(LOG_TAG, "setDescription: " + description);
             request.setDescription(description);
             //Set the local destination for the downloaded file to a path within the application's external files directory            
             request.setDestinationInExternalFilesDir(cordova.getActivity().getApplicationContext(), Environment.DIRECTORY_DOWNLOADS, filename);
